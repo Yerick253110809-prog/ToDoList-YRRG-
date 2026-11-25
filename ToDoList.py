@@ -8,6 +8,7 @@ class ToDoList(QtWidgets.QMainWindow):
         super().__init__()
         ruta_ui = os.path.join(os.path.dirname(__file__), "ToDoList.ui")
         uic.loadUi(ruta_ui, self)
+        
         self.btnAgregar.clicked.connect(self.agregar_tarea)
         self.btnEliminar.clicked.connect(self.eliminar_tarea)
         self.btnEditar.clicked.connect(self.actualizar_tarea)
@@ -23,6 +24,7 @@ class ToDoList(QtWidgets.QMainWindow):
         if not tarea:
             QMessageBox.warning(self, "Advertencia", "No se puede agregar una tarea vacía.")
             self._limpiar_campo()
+            #papi ye
             return
         self.lstTareas.addItem(tarea)
         self._limpiar_campo()
@@ -37,6 +39,7 @@ class ToDoList(QtWidgets.QMainWindow):
             QMessageBox.warning(self,"Texto inválido","No se puede actualizar a una tarea vacía ni contener solo espacios.",)
             self._limpiar_campo()
             return
+        
         self.lstTareas.item(indice).setText(nuevo_texto)
         self._limpiar_campo()
 
@@ -50,5 +53,6 @@ class ToDoList(QtWidgets.QMainWindow):
         if indice == -1:
             QMessageBox.warning(self, "Sin selección", "Selecciona una tarea de la lista para eliminar.")
             return
+        
         self.lstTareas.takeItem(indice)
         self._limpiar_campo()
